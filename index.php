@@ -9,24 +9,24 @@ try {
     $dsn = "mysql:host=" . HOST . ";port=" . PORT . ";dbname=" . DB . ";charset=utf8mb4";
     $pdo = new PDO($dsn, USER, PWS, [PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC]);
 
-    $insertStmt = $pdo->prepare("INSERT INTO tbl_lab (name, gender) VALUES (:name, :gender)");
+    $insertStmt = $pdo->prepare("insert into tbl_lab (name, gender) values (:name, :gender)");
     $insertStmt->execute([
         ':name' => 'Kan Theary',
         ':gender' => 'F'
     ]);
 
-    $updateStmt = $pdo->prepare("UPDATE tbl_lab SET name = :newName WHERE id = :id");
+    $updateStmt = $pdo->prepare("update tbl_lab set name = :newName where id = :id");
     $updateStmt->execute([
         ':newName' => 'Kan Sokmean',
         ':id' => 1
     ]);
 
-    $deleteStmt = $pdo->prepare("DELETE FROM tbl_lab WHERE id = :id");
+    $deleteStmt = $pdo->prepare("delete from tbl_lab where id = :id");
     $deleteStmt->execute([
         ':id' => 3
     ]);
 
-    $stm = $pdo->prepare("SELECT * FROM tbl_lab");
+    $stm = $pdo->prepare("select * from tbl_lab");
     $stm->execute();
 
     if ($stm->rowCount() > 0) {
